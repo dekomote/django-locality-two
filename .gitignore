@@ -4,7 +4,8 @@ develop-eggs/
 dist/
 eggs/
 parts/
-
+.tox/
+.coverage
 .installed.cfg
 
 src/*.egg-info
