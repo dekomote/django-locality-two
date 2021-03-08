@@ -3,7 +3,7 @@
 `django-locality-two` is a drop-in replacement for django-locality with modern python (3.5+) and django (1.11+) support,
 and more tests.
 Locality is a light collection of helpers for handling countries and
-territories in Django. It should work with old projects out of the box
+territories in Django.
 
 Currently, it includes:
 
@@ -12,7 +12,7 @@ Currently, it includes:
     issue](https://github.com/dekomote/django-locality-two/issues) or [submit a pull
     request](https://github.com/dekomote/django-locality-two/compare/))
   * views returning serialized lists of countries and territories
-  * nifty form fields and widgets
+  * simple form field and widget
 
 ## Installation
 
@@ -20,7 +20,7 @@ Currently, it includes:
 
 Install from GitHub with pip:
 
-    pip install -e git+https://github.com/dekomote/django-locality.git#egg=django-locality==2.0.0
+    pip install -e git+https://github.com/dekomote/django-locality-two.git#egg=django-locality-two==2.0.0
 
 Then add `locality` to `INSTALLED_APPS` in your Django settings. To load the
 included data, run:
@@ -28,10 +28,6 @@ included data, run:
     python manage.py loaddata locality
 
 (or whichever equivalent method you use to run "manage.py" commands)
-
-The fixture is not installed as `initial_data.json` to give you the option of
-using your own, and to prevent changes being overwritten whenever you run
-syncdb.
 
 ## Usage
 

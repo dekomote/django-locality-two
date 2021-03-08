@@ -59,3 +59,50 @@ class TestTerritoryManager(TestCase):
         self.territory2 = Territory.objects.create(abbr="t2", name="Turf2", country=self.country)
         self.territory3 = Territory.objects.create(abbr="t3", name="Turf3", country=self.country1)
         self.territory4 = Territory.objects.create(abbr="t4", name="Turf4", country=self.country1)
+
+    def test_by_country(self):
+        turf_qs = Territory.objects.by_country(self.country.pk)
+        self.assertEqual(turf_qs.count(), 2)
+        self.assertIn(self.territory1, turf_qs)
+        self.assertIn(self.territory2, turf_qs)
+        self.assertNotIn(self.territory3, turf_qs)
+        self.assertNotIn(self.territory4, turf_qs)
+
+    def test_by_country_str(self):
+        turf_qs = Territory.objects.by_country("mk")
+        self.assertEqual(turf_qs.count(), 2)
+        self.assertIn(self.territory1, turf_qs)
+        self.assertIn(self.territory2, turf_qs)
+        self.assertNotIn(self.territory3, turf_qs)
+        self.assertNotIn(self.territory4, turf_qs)
+        self.assertEqual(Territory.objects.by_country().count(), 4)
+
+    def test_by_country_iso2(self):
+        turf_qs = Territory.objects.by_country_iso2("mk")
+        self.assertEqual(turf_qs.count(), 2)
+        self.assertIn(self.territory1, turf_qs)
+        self.assertIn(self.territory2, turf_qs)
+        self.assertNotIn(self.territory3, turf_qs)
+        self.assertNotIn(self.territory4, turf_qs)
+        self.assertEqual(Territory.objects.by_country_iso2("mkmk").count(), 0)
+        self.assertEqual(Territory.objects.by_country_iso2().count(), 4)
+
+    def test_by_country_iso3(self):
+        turf_qs = Territory.objects.by_country_iso3("mkd")
+        self.assertEqual(turf_qs.count(), 2)
+        self.assertIn(self.territory1, turf_qs)
+        self.assertIn(self.territory2, turf_qs)
+        self.assertNotIn(self.territory3, turf_qs)
+        self.assertNotIn(self.territory4, turf_qs)
+        self.assertEqual(Territory.objects.by_country_iso3("mkmk").count(), 0)
+        self.assertEqual(Territory.objects.by_country_iso3().count(), 4)
+
+    def test_by_country_id(self):
+        turf_qs = Territory.objects.by_country_id(self.country.id)
+        self.assertEqual(turf_qs.count(), 2)
+        self.assertIn(self.territory1, turf_qs)
+        self.assertIn(self.territory2, turf_qs)
+        self.assertNotIn(self.territory3, turf_qs)
+        self.assertNotIn(self.territory4, turf_qs)
+        self.assertEqual(Territory.objects.by_country_id(-453453).count(), 0)
+        self.assertEqual(Territory.objects.by_country_id().count(), 4)
