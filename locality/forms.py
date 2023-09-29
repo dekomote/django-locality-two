@@ -1,7 +1,10 @@
 from django import forms
 from django.core.validators import EMPTY_VALUES
 from django.db.models import Q
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import gettext_lazy as _
+except ImportError:
+    from django.utils.translation import ugettext_lazy as _
 
 from locality.models import Country
 
