@@ -16,11 +16,15 @@ Currently, it includes:
 
 ## Installation
 
-**The latest version of `django-locality-two` is currently not available on PyPi**
+Install from the cheese shop
+
+    pip install django-locality-two
+
+OR
 
 Install from GitHub with pip:
 
-    pip install -e git+https://github.com/dekomote/django-locality-two.git#egg=django-locality-two==2.0.0
+    pip install -e git+https://github.com/dekomote/django-locality-two.git#egg=django-locality-two==2.1.1
 
 Then add `locality` to `INSTALLED_APPS` in your Django settings. To load the
 included data, run:
