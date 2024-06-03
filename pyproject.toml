@@ -14,8 +14,11 @@ isolated_build = true
 skip_install = true
 
 envlist =
-    py{36,37,38,39}-dj{11,22,30,31,40},
+    py{37,38,39}-dj{11,22,30,31,40},
     py{310}-dj{40},
+    py{310}-dj{50},
+    py{311}-dj{50},
+    py{312}-dj{50},
 
 [testenv]
 deps =
@@ -25,6 +28,7 @@ deps =
     dj30: Django>=3.0,<3.1
     dj31: Django>=3.1,<3.2
     dj40: Django>=4.0,<4.1
+    dj50: Django>=5.0,<5.1
 
 commands =
     coverage run -a runtests.py
@@ -36,7 +40,6 @@ commands =
 source = ["."]
 branch = true
 omit = ["./venv/*", "*tests*", "*apps.py", "*manage.py", "*__init__.py", "*migrations*", "*asgi*", "*wsgi*", "*urls.py", "*translation.py", "./.tox/*", "*.pyc", "setup.py"]
-
 
 [tool.coverage.report]
 ignore_errors = true
