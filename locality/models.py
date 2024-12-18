@@ -1,8 +1,12 @@
 from django.db import models
+
+
 try:
     from django.utils.translation import gettext_lazy as _
 except ImportError:
     from django.utils.translation import ugettext_lazy as _
+
+from django.conf import settings
 
 from locality import managers
 
@@ -38,6 +42,8 @@ class Territory(models.Model):
     objects = managers.TerritoryManager()
 
     def __str__(self):
+        if getattr(settings, "LOCALITY_TERRITORY_OMIT_COUNTRY_NAME", False):
+            return self.name
         return f"{self.name}, {self.country.name}"
 
     class Meta:

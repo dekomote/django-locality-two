@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http.response import Http404
 from django.test import TestCase
 
@@ -22,6 +23,10 @@ class TestTerritory(TestCase):
 
     def test_repr(self):
         self.assertEqual(str(self.territory), "skopje, Macedonia")
+
+    def test_repr_omit_country(self):
+        settings.LOCALITY_TERRITORY_OMIT_COUNTRY_NAME = True
+        self.assertEqual(str(self.territory), "skopje")
 
 
 class TestCountryManager(TestCase):
